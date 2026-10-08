@@ -1,0 +1,364 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#10131f">
+
+  <title>XO — Play Together</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="script.js" defer></script>
+
+</head>
+
+<body>
+
+  <div class="ambient ambient-one"></div>
+
+  <div class="ambient ambient-two"></div>
+
+  <main class="shell">
+
+    <header class="topbar">
+
+      <a class="brand" href="#">
+
+        <span class="logo"><b>×</b><i>○</i></span>
+
+        <span>xo<span class="accent">.</span></span>
+
+      </a>
+
+      <span class="top-note">
+
+        <span class="live"></span>
+
+        GOOD VIBES. GREAT MOVES.
+
+      </span>
+
+    </header>
+
+    <section class="hero">
+
+      <div>
+
+        <p class="eyebrow">THE CLASSIC, REIMAGINED</p>
+
+        <h1>Think fast.<br><span>Play smart.</span></h1>
+
+        <p class="sub">
+
+          A little strategy, a little luck,
+
+          and a lot of bragging rights.
+
+        </p>
+
+      </div>
+
+      <div class="hero-chip">✦ READY FOR A REMATCH?</div>
+
+    </section>
+
+    <section class="workspace">
+
+      <article class="panel game-panel">
+
+        <div class="panel-head">
+
+          <div>
+
+            <p class="kicker">NOW PLAYING</p>
+
+            <h2 id="status" aria-live="polite">X's turn</h2>
+
+          </div>
+
+          <button class="icon-btn" id="new-round"
+
+            title="New round" aria-label="New round">↻</button>
+
+        </div>
+
+        <div class="modes">
+
+          <button class="mode active" id="human-mode"
+
+            aria-pressed="true">♟ Two players</button>
+
+          <button class="mode" id="computer-mode"
+
+            aria-pressed="false">✦ vs Computer</button>
+
+        </div>
+
+        <div class="board" id="board" role="grid"
+
+          aria-label="Tic tac toe board">
+
+          <button class="cell" data-index="0"
+
+            aria-label="Row 1 column 1"></button>
+
+          <button class="cell" data-index="1"
+
+            aria-label="Row 1 column 2"></button>
+
+          <button class="cell" data-index="2"
+
+            aria-label="Row 1 column 3"></button>
+
+          <button class="cell" data-index="3"
+
+            aria-label="Row 2 column 1"></button>
+
+          <button class="cell" data-index="4"
+
+            aria-label="Row 2 column 2"></button>
+
+          <button class="cell" data-index="5"
+
+            aria-label="Row 2 column 3"></button>
+
+          <button class="cell" data-index="6"
+
+            aria-label="Row 3 column 1"></button>
+
+          <button class="cell" data-index="7"
+
+            aria-label="Row 3 column 2"></button>
+
+          <button class="cell" data-index="8"
+
+            aria-label="Row 3 column 3"></button>
+
+        </div>
+
+        <div class="game-foot">
+
+          <span class="turn-pill">
+
+            <b id="turn-symbol">X</b>
+
+            <span id="turn-copy">Player X is up</span>
+
+          </span>
+
+          <button class="quiet" id="reset-scores">
+
+            Reset scores
+
+          </button>
+
+        </div>
+
+      </article>
+
+      <aside class="side">
+
+        <article class="panel score-panel">
+
+          <div class="panel-head">
+
+            <div>
+
+              <p class="kicker">THE SCOREBOARD</p>
+
+              <h2>Match stats</h2>
+
+            </div>
+
+            <span class="spark">✳</span>
+
+          </div>
+
+          <div class="scores">
+
+            <div class="score-row">
+
+              <span class="player">
+
+                <i class="token x-token">×</i>
+
+                <span id="x-player-label">Player X</span>
+
+              </span>
+
+              <strong id="x-score">0</strong>
+
+            </div>
+
+            <div class="score-row">
+
+              <span class="player">
+
+                <i class="token o-token">○</i>
+
+                <span id="o-player-label">Player O</span>
+
+              </span>
+
+              <strong id="o-score">0</strong>
+
+            </div>
+
+            <div class="score-row">
+
+              <span class="player">
+
+                <i class="token draw-token">=</i>
+
+                Draws
+
+              </span>
+
+              <strong id="draw-score">0</strong>
+
+            </div>
+
+          </div>
+
+          <p class="caption" id="score-caption">
+
+            Every match starts somewhere.
+
+          </p>
+
+        </article>
+
+        <article class="panel settings">
+
+          <div class="panel-head">
+
+            <div>
+
+              <p class="kicker">YOUR GAME</p>
+
+              <h2>Customize</h2>
+
+            </div>
+
+            <span class="gear">⚙</span>
+
+          </div>
+
+          <label>
+
+            PLAYER X NAME
+
+            <input id="x-name" maxlength="16"
+
+              value="Player X" placeholder="Player X">
+
+          </label>
+
+          <label id="o-name-wrap">
+
+            PLAYER O NAME
+
+            <input id="o-name" maxlength="16"
+
+              value="Player O" placeholder="Player O">
+
+          </label>
+
+          <label>
+
+            COMPUTER DIFFICULTY
+
+            <select id="difficulty">
+
+              <option value="hard">Unbeatable</option>
+
+              <option value="medium">Clever</option>
+
+              <option value="easy">Easygoing</option>
+
+            </select>
+
+          </label>
+
+          <div class="setting-line">
+
+            <span>Sound effects</span>
+
+            <button class="toggle on" id="sound-toggle"
+
+              aria-pressed="true"><span></span></button>
+
+          </div>
+
+          <div class="setting-line">
+
+            <span>Vibration (mobile)</span>
+
+            <button class="toggle on" id="vibe-toggle"
+
+              aria-pressed="true"><span></span></button>
+
+          </div>
+
+        </article>
+
+      </aside>
+
+    </section>
+
+    <footer>
+
+      <span>XO STUDIO <b>•</b> THE FOREVER GAME</span>
+
+      <span>Made for your next rematch <b>♥</b></span>
+
+    </footer>
+
+  </main>
+
+  <div class="toast" id="toast" role="status"
+
+    aria-live="polite"></div>
+
+  <div class="celebration" id="celebration"
+
+    aria-hidden="true">
+
+    <div class="celebrate-card">
+
+      <div class="trophy">🏆</div>
+
+      <p class="kicker">GAME OVER</p>
+
+      <h2 id="winner-title">X wins!</h2>
+
+      <p id="winner-copy">What a move.</p>
+
+      <button id="play-again">
+
+        Play again <span>→</span>
+
+      </button>
+
+    </div>
+
+    <div class="confetti" id="confetti"></div>
+
+  </div>
+
+</body>
+
+</html>
